@@ -135,35 +135,35 @@ if menu_option == '🚌 Select the Bus':
     col1, col2 = st.columns(2)
     with col1 :
         if state == 'Kerala':
-            route = st.selectbox('📍Select Route',Kerala,placeholder="Choose an route")
-            type = st.selectbox('🚍 Bus Type',Type_kerala,placeholder="Choose an bus type")
+            route = st.selectbox('📍Select Route',Kerala,index=0)
+            type = st.selectbox('🚍 Bus Type',Type_kerala,index=0)
         elif state == 'Telangana':
-            route = st.selectbox('📍Select Route',Telangana,placeholder="Choose an route")
-            type = st.selectbox('🚍 Bus Type',Type_telangana,placeholder="Choose an bus type")
+            route = st.selectbox('📍Select Route',Telangana,index=0)
+            type = st.selectbox('🚍 Bus Type',Type_telangana,index=0)
         elif state == 'Kadamba':
-            route = st.selectbox('📍Select Route',Kadamba,placeholder="Choose an route")
-            type = st.selectbox('🚍 Bus Type',Type_kadamba,placeholder="Choose an bus type")
+            route = st.selectbox('📍Select Route',Kadamba,index=0)
+            type = st.selectbox('🚍 Bus Type',Type_kadamba,index=0)
         elif state == 'Rajasthan':
-            route = st.selectbox('📍Select Route',Rajasthan,placeholder="Choose an route")
-            type = st.selectbox('🚍 Bus Type',Type_rajasthan,placeholder="Choose an bus type")
+            route = st.selectbox('📍Select Route',Rajasthan,index=0)
+            type = st.selectbox('🚍 Bus Type',Type_rajasthan,index=0)
         elif state == 'NorthBengal':
-            route = st.selectbox('📍Select Route',NorthBengal,placeholder="Choose an route")
-            type = st.selectbox('🚍 Bus Type',Type_northbengal,placeholder="Choose an bus type")
+            route = st.selectbox('📍Select Route',NorthBengal,index=0)
+            type = st.selectbox('🚍 Bus Type',Type_northbengal,index=0)
         elif state == 'WestBengal':
-            route = st.selectbox('📍Select Route',WestBengal,placeholder="Choose an route")
-            type = st.selectbox('🚍 Bus Type',Type_westbengal,placeholder="Choose an bus type")
+            route = st.selectbox('📍Select Route',WestBengal,index=0)
+            type = st.selectbox('🚍 Bus Type',Type_westbengal,index=0)
         elif state == 'Assam':
-            route = st.selectbox('📍Select Route',Assam,placeholder="Choose an route",)
-            type = st.selectbox('🚍 Bus Type',Type_assam,placeholder="Choose an bus type")
+            route = st.selectbox('📍Select Route',Assam,index=0)
+            type = st.selectbox('🚍 Bus Type',Type_assam,index=0)
         elif state == 'Punjab':
-            route = st.selectbox('📍Select Route',Punjab,placeholder="Choose an route")
-            type = st.selectbox('🚍 Bus Type',Type_punjab,placeholder="Choose an bus type")
+            route = st.selectbox('📍Select Route',Punjab,index=0)
+            type = st.selectbox('🚍 Bus Type',Type_punjab,index=0)
         elif state == 'Bihar':
-            route = st.selectbox('📍Select Route',Bihar,placeholder="Choose an route")
-            type = st.selectbox('🚍 Bus Type',Type_bihar,placeholder="Choose an bus type")
+            route = st.selectbox('📍Select Route',Bihar,index=0)
+            type = st.selectbox('🚍 Bus Type',Type_bihar,index=0)
         elif state == 'Chandigarh':
-            route = st.selectbox('📍Select Route',Chandigarh,placeholder="Choose an route")
-            type = st.selectbox('🚍 Bus Type',Type_chandigarh,placeholder="Choose an bus type")
+            route = st.selectbox('📍Select Route',Chandigarh,index=0)
+            type = st.selectbox('🚍 Bus Type',Type_chandigarh,index=0)
 
     with col2 :
         timing = st.slider("Bus Timings 🕒", value=(time(16, 30), time(20, 45)))
