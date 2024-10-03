@@ -1,3 +1,4 @@
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -12,97 +13,6 @@ mydb = mysql.connector.connect(
   database='redbus_project'
 )
 mycursor = mydb.cursor(buffered=True)
-
-kerala=[]
-bus_type_kerala=[]
-df_kearala=pd.read_csv("F:\df_kerala.csv")
-for i,r in df_kearala.iterrows():  #traverse through each row
-    kerala.append(r['Route_name'])  
-    bus_type_kerala.append(r['Bus_type']) 
-Kerala =list(set(kerala))
-Type_kerala =list(set(bus_type_kerala))
-
-telangana=[]
-bus_type_telangana=[]
-df_telangana=pd.read_csv("F:\df_telangana.csv")
-for i,r in df_telangana.iterrows():  #traverse through each row
-    telangana.append(r['Route_name']) 
-    bus_type_telangana.append(r['Bus_type']) 
-Telangana =list(set(telangana))
-Type_telangana =list(set(bus_type_telangana))
-
-kadamba=[]
-bus_type_kadamba=[]
-df_kadamba=pd.read_csv("F:\df_kadamba.csv")
-for i,r in df_kadamba.iterrows():  #traverse through each row
-    kadamba.append(r['Route_name']) 
-    bus_type_kadamba.append(r['Bus_type']) 
-Kadamba =list(set(kadamba))
-Type_kadamba =list(set(bus_type_kadamba))
-
-rajasthan=[]
-bus_type_rajasthan=[]
-df_rajasthan=pd.read_csv("F:\df_rajasthan.csv")
-for i,r in df_rajasthan.iterrows():  #traverse through each row
-    rajasthan.append(r['Route_name']) 
-    bus_type_rajasthan.append(r['Bus_type']) 
-Rajasthan =list(set(rajasthan))
-Type_rajasthan =list(set(bus_type_rajasthan))
-
-northbengal=[]
-bus_type_northbengal=[]
-df_northbengal=pd.read_csv("F:\df_northbengal.csv")
-for i,r in df_northbengal.iterrows():  #traverse through each row
-    northbengal.append(r['Route_name']) 
-    bus_type_northbengal.append(r['Bus_type']) 
-NorthBengal =list(set(northbengal))
-Type_northbengal =list(set(bus_type_northbengal))
-
-westbengal=[]
-bus_type_westbengal=[]
-df_westbengal=pd.read_csv("F:\df_westbengal.csv")
-for i,r in df_westbengal.iterrows():  #traverse through each row
-    westbengal.append(r['Route_name']) 
-    bus_type_westbengal.append(r['Bus_type']) 
-WestBengal =list(set(westbengal))
-Type_westbengal =list(set(bus_type_westbengal))
-
-assam=[]
-bus_type_assam=[]
-df_assam=pd.read_csv("F:\df_Assam.csv")
-for i,r in df_assam.iterrows():  #traverse through each row
-    assam.append(r['Route_name']) 
-    bus_type_assam.append(r['Bus_type']) 
-Assam =list(set(assam))
-Type_assam =list(set(bus_type_assam))
-
-punjab=[]
-bus_type_punjab=[]
-df_punjab=pd.read_csv("F:\df_punjab.csv")
-for i,r in df_punjab.iterrows():  #traverse through each row
-    punjab.append(r['Route_name']) 
-    bus_type_punjab.append(r['Bus_type']) 
-Punjab =list(set(punjab))
-Type_punjab =list(set(bus_type_punjab))
-
-bihar=[]
-bus_type_bihar=[]
-df_bihar=pd.read_csv("F:\df_bihar.csv")
-for i,r in df_bihar.iterrows():  #traverse through each row
-    bihar.append(r['Route_name']) 
-    bus_type_bihar.append(r['Bus_type']) 
-Bihar =list(set(bihar))
-Type_bihar =list(set(bus_type_bihar))
-
-chandigarh=[]
-bus_type_chandigarh=[]
-df_chandigarh=pd.read_csv("F:\df_chandigarh.csv")
-for i,r in df_chandigarh.iterrows():  #traverse through each row
-    chandigarh.append(r['Route_name']) 
-    bus_type_chandigarh.append(r['Bus_type']) 
-Chandigarh =list(set(chandigarh))
-Type_chandigarh =list(set(bus_type_chandigarh))
-
 
 #setting up streamlit page
 st.set_page_config(layout="wide")
@@ -130,40 +40,27 @@ if menu_option == '🏠 Home':
 
 
 if menu_option == '🚌 Select the Bus':
-    state = st.sidebar.selectbox('🗺️State',['Kerala','Telangana','Kadamba','Rajasthan','NorthBengal',
+    selected_state = st.sidebar.selectbox('🗺️State',['Kerala','Telangana','Kadamba','Rajasthan','NorthBengal',
                                  'WestBengal','Assam','Punjab','Bihar','Chandigarh'])
+
+    routes = []
+    bus_types = []
+
+    mycursor.execute(f"SELECT Route_name, Bus_type FROM redbus_bus_details WHERE State= '{selected_state}'")
+    result = mycursor.fetchall()
+
+    for i in result:
+        routes.append(i[0])
+        bus_types.append(i[1])
+
+    unique_routes = list(set(routes))
+    unique_bus_types = list(set(bus_types))
+    
+
     col1, col2 = st.columns(2)
     with col1 :
-        if state == 'Kerala':
-            route = st.selectbox('📍Select Route',Kerala,index=0)
-            type = st.selectbox('🚍 Bus Type',Type_kerala,index=0)
-        elif state == 'Telangana':
-            route = st.selectbox('📍Select Route',Telangana,index=0)
-            type = st.selectbox('🚍 Bus Type',Type_telangana,index=0)
-        elif state == 'Kadamba':
-            route = st.selectbox('📍Select Route',Kadamba,index=0)
-            type = st.selectbox('🚍 Bus Type',Type_kadamba,index=0)
-        elif state == 'Rajasthan':
-            route = st.selectbox('📍Select Route',Rajasthan,index=0)
-            type = st.selectbox('🚍 Bus Type',Type_rajasthan,index=0)
-        elif state == 'NorthBengal':
-            route = st.selectbox('📍Select Route',NorthBengal,index=0)
-            type = st.selectbox('🚍 Bus Type',Type_northbengal,index=0)
-        elif state == 'WestBengal':
-            route = st.selectbox('📍Select Route',WestBengal,index=0)
-            type = st.selectbox('🚍 Bus Type',Type_westbengal,index=0)
-        elif state == 'Assam':
-            route = st.selectbox('📍Select Route',Assam,index=0)
-            type = st.selectbox('🚍 Bus Type',Type_assam,index=0)
-        elif state == 'Punjab':
-            route = st.selectbox('📍Select Route',Punjab,index=0)
-            type = st.selectbox('🚍 Bus Type',Type_punjab,index=0)
-        elif state == 'Bihar':
-            route = st.selectbox('📍Select Route',Bihar,index=0)
-            type = st.selectbox('🚍 Bus Type',Type_bihar,index=0)
-        elif state == 'Chandigarh':
-            route = st.selectbox('📍Select Route',Chandigarh,index=0)
-            type = st.selectbox('🚍 Bus Type',Type_chandigarh,index=0)
+        route = st.selectbox('📍Select Route',unique_routes,index=0)
+        type = st.selectbox('🚍 Bus Type',unique_bus_types,index=0)
 
     with col2 :
         timing = st.slider("Bus Timings 🕒", value=(time(16, 30), time(20, 45)))
@@ -190,7 +87,7 @@ if menu_option == '🚌 Select the Bus':
         out=mycursor.fetchall()
         df=pd.DataFrame(out,columns=[
                 "ID","Bus_name","Bus_type","Start_time","End_time","Duration","Price",
-                "Seats_Available","Ratings","Route_name","Route_link"
+                "Seats_Available","Ratings","Route_name","Route_link","State"
             ])
         df['Start_time'] = df['Start_time'].astype(str)
         df['Start_time'] = df['Start_time'].str.strip("0 days",)
